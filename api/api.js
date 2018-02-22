@@ -19,6 +19,7 @@ const Schema = require('./controllers/');
 
 // environment: development, testing, production
 const environment = process.env.NODE_ENV;
+const nodeEnvEqualsDevelopment = environment === 'development'
 
 /**
  * express application
@@ -46,17 +47,19 @@ api.use(bodyParser.json());
 // public REST API
 api.use('/rest', mappedRoutes);
 
-// private GraphQL API
-api.all('/graphql', (req, res, next) => auth(req, res, next));
+// private GraphQL API in NODE_ENV=production
+if (!nodeEnvEqualsDevelopment) {
+  api.all('/graphql', (req, res, next) => auth(req, res, next));
+}
 api.get('/graphql', GraphHTTP({
   schema: Schema,
   pretty: true,
-  graphiql: false,
+  graphiql: nodeEnvEqualsDevelopment, // if we set graphiql to true we get a nice webinterface to test our GraphQL Queries
 }));
 api.post('/graphql', GraphHTTP({
   schema: Schema,
   pretty: true,
-  graphiql: false,
+  graphiql: nodeEnvEqualsDevelopment,
 }));
 
 server.listen(config.port, () => {
