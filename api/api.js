@@ -53,7 +53,8 @@ if (environment.isProduction) {
 api.get('/graphql', GraphHTTP({
   schema: Schema,
   pretty: true,
-  graphiql: environment.isNotProduction, // if we set graphiql to true we get a nice webinterface to test our GraphQL Queries
+  // if we set graphiql to true we get a nice webinterface to test our GraphQL Queries
+  graphiql: environment.isNotProduction,
 }));
 api.post('/graphql', GraphHTTP({
   schema: Schema,

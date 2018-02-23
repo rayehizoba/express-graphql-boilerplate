@@ -20,7 +20,7 @@ const dbService = (migrate) => {
 
   const successfulDBStart = () => {
     console.info('connection to the database has been established successfully');
-    if (environment.isNotProduction) {
+    if (environment.isDevelopment) {
       dbSeeder.start();
     }
   };
