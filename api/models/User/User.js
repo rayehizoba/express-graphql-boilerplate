@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const bcryptSevice = require('../../services/bcrypt.service');
 
 const sequelize = require('../../../config/database');
-const Note = require('../Note/Note');
+const Post = require('../Post/Post');
 
 const hooks = {
   beforeCreate(user) {
@@ -35,6 +35,6 @@ const User = sequelize.define('User', {
   },
 }, { hooks, instanceMethods, tableName });
 
-User.hasMany(Note, { as: 'notes' });
+User.hasMany(Post, { as: 'posts' });
 
 module.exports = User;

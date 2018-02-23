@@ -18,7 +18,7 @@ const dbService = require('./services/db.service');
 const Schema = require('./controllers/');
 
 // environment: development, testing, production
-const environment = require('./services/environment.service');
+const environment = require('./services/env.service');
 
 /**
  * express application

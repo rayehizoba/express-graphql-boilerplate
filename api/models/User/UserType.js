@@ -5,8 +5,8 @@ const {
   GraphQLList,
 } = require('graphql');
 
-const NoteType = require('../Note/NoteType');
-const Note = require('../Note/Note');
+const PostType = require('../Post/PostType');
+const Post = require('../Post/Post');
 
 const UserType = new GraphQLObjectType({
   name: 'User',
@@ -24,15 +24,14 @@ const UserType = new GraphQLObjectType({
       type: GraphQLString,
       resolve: (user) => user.email,
     },
-    notes: {
-      type: new GraphQLList(NoteType),
+    posts: {
+      type: new GraphQLList(PostType),
       resolve: (user) => (
-        Note
-          .findAll({
-            where: {
-              UserId: user.id,
-            },
-          })
+        Post.findAll({
+          where: {
+            UserId: user.id,
+          },
+        })
       ),
     },
     createdAt: {

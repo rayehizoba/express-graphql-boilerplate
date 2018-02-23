@@ -1,6 +1,6 @@
 const database = require('../../config/database');
 const dbSeeder = require('./dbSeeder.service');
-const environment = require('./environment.service');
+const environment = require('./env.service');
 
 const dbService = (migrate) => {
   const authenticateDB = () => (

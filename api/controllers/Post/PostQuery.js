@@ -4,11 +4,11 @@ const {
   GraphQLList,
 } = require('graphql');
 
-const NoteType = require('../../models/Note/NoteType');
-const Note = require('../../models/Note/Note');
+const PostType = require('../../models/Post/PostType');
+const Post = require('../../models/Post/Post');
 
-const noteQuery = {
-  type: new GraphQLList(NoteType),
+const postQuery = {
+  type: new GraphQLList(PostType),
   args: {
     id: {
       name: 'id',
@@ -31,7 +31,7 @@ const noteQuery = {
       type: GraphQLString,
     },
   },
-  resolve: (user, args) => Note.findAll({ where: args }),
+  resolve: (user, args) => Post.findAll({ where: args }),
 };
 
-module.exports = noteQuery;
+module.exports = postQuery;

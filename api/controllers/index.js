@@ -8,19 +8,19 @@ const {
   updateUser,
   deleteUser,
 } = require('./User/UserMutation');
-const noteQuery = require('./Note/NoteQuery');
+const postQuery = require('./Post/PostQuery');
 const {
-  createNote,
-  updateNote,
-  deleteNote,
-} = require('./Note/NoteMutation');
+  createPost,
+  updatePost,
+  deletePost,
+} = require('./Post/PostMutation');
 
 const RootQuery = new GraphQLObjectType({
   name: 'rootQuery',
   description: 'This is the root query which holds all possible READ entrypoints for the GraphQL API',
   fields: () => ({
     user: userQuery,
-    note: noteQuery,
+    post: postQuery,
   }),
 });
 
@@ -30,9 +30,9 @@ const RootMutation = new GraphQLObjectType({
   fields: () => ({
     updateUser,
     deleteUser,
-    createNote,
-    updateNote,
-    deleteNote,
+    createPost,
+    updatePost,
+    deletePost,
   }),
 });
 

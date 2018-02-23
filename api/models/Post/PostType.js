@@ -4,31 +4,31 @@ const {
   GraphQLString,
 } = require('graphql');
 
-const NoteType = new GraphQLObjectType({
-  name: 'Note',
-  description: 'This represents a Note',
+const PostType = new GraphQLObjectType({
+  name: 'Post',
+  description: 'This represents a User Post',
   fields: () => ({
     id: {
       type: GraphQLInt,
-      resolve: (note) => note.id,
+      resolve: (post) => post.id,
     },
     UserId: {
       type: GraphQLInt,
-      resolve: (note) => note.UserId,
+      resolve: (post) => post.UserId,
     },
-    note: {
+    post: {
       type: GraphQLString,
-      resolve: (note) => note.note,
+      resolve: (post) => post.post,
     },
     createdAt: {
       type: GraphQLString,
-      resolve: (note) => note.createdAt,
+      resolve: (post) => post.createdAt,
     },
     updatedAt: {
       type: GraphQLString,
-      resolve: (note) => note.createdAt,
+      resolve: (post) => post.createdAt,
     },
   }),
 });
 
-module.exports = NoteType;
+module.exports = PostType;

@@ -2,12 +2,12 @@ const Sequelize = require('sequelize');
 
 const sequelize = require('../../../config/database');
 
-const tableName = 'notes';
+const tableName = 'posts';
 
-const Note = sequelize.define('Note', {
-  note: {
+const Post = sequelize.define('Post', {
+  post: {
     type: Sequelize.STRING,
   },
 }, { tableName });
 
-module.exports = Note;
+module.exports = Post;
