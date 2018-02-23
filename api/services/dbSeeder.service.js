@@ -2,30 +2,32 @@ const faker = require('faker');
 const User = require('../models/User/User');
 const Post = require('../models/Post/Post');
 
-const genetatePosts = (id, count = 3) => {
-  for (let i = 0; i < count; i + 1) {
-    Post.create({
+const genetatePosts = async (id, count = 3) => {
+  for (let i = 0; i < count; i += 1) {
+    await Post.create({
       UserId: id,
-      post: faker.lorem.paragraph,
-    });
+      post: faker.lorem.paragraph(),
+    }).then(() => null);
   }
 };
 
-const generateUsers = (count = 3) => {
-  for (let i = 0; i < count; i + 1) {
-    User.create({
+const generateUsers = async (count = 3) => {
+  for (let i = 0; i < count; i += 1) {
+    await User.create({
       username: faker.name.findName(),
       email: faker.internet.email(),
       password: faker.internet.password(),
     }).then((newUser) => {
       genetatePosts(newUser.id);
+      return null;
     });
   }
 };
 
 module.exports = {
-  start: () => {
+  start: async () => {
     console.info('[dbSeeder.service] seeding the database with fake data');
-    generateUsers();
+    await generateUsers();
+    console.info('[dbSeeder.service] done seeding the database with fake data');
   },
 };
