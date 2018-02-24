@@ -1,5 +1,5 @@
 const database = require('../../config/database');
-const dbSeeder = require('./dbSeeder.service');
+const faker = require('./faker.service');
 const environment = require('./env.service');
 
 const dbService = (migrate) => {
@@ -21,7 +21,7 @@ const dbService = (migrate) => {
   const successfulDBStart = () => {
     console.info('connection to the database has been established successfully');
     if (environment.isDevelopment) {
-      dbSeeder.start();
+      faker.start();
     }
   };
 
